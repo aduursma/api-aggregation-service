@@ -1,0 +1,23 @@
+= Back-End Software Developer Assessment
+André Duursma;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-httpie-request-title: Example request
+:operation-http-response-title: Example response
+:imagesdir: images
+
+[[assessment]]
+= Assessment
+include::assessment.adoc[]
+
+[[implementation]]
+= Implementation
+include::aggregation.adoc[]
+
+[[design-decisions]]
+= Design decisions
+include::design-decisions.adoc[]

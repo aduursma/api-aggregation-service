@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/pricing",
+    "queryParameters": {
+      "q": {
+        "equalTo": "NL"
+      },
+      "q": {
+        "equalTo": "NL"
+      },
+      "q": {
+        "equalTo": "NL"
+      },
+      "q": {
+        "equalTo": "NL"
+      },
+      "q": {
+        "equalTo": "NL"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "pricing/nl-nl-nl-nl-nl_ok.json"
+  }
+}

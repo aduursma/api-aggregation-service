@@ -1,0 +1,20 @@
+# API Aggregation Service
+# No parameters
+GET http://localhost:8080/aggregation
+
+###
+
+# Valid parameters
+GET http://localhost:8080/aggregation?pricing=NL,CN&track=109347263,123456891&shipments=109347263,123456891
+
+###
+
+# Only track parameters parameters
+GET http://localhost:8080/aggregation?track=109347263,123456891
+
+###
+
+# Valid parameters (9 countries)
+GET http://localhost:8080/aggregation?pricing=CZ,PT,IT,FR,LU,ES,HU,HR,PL&track=109347263&shipments=109347263
+
+###

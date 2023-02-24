@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "9592cf14-3f4a-4d11-bce9-a0039271f233",
+		"name": "FedEx Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OPS",
+			"item": [
+				{
+					"name": "Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}/actuator/info",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{hostname}}/actuator/health",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Backend Services",
+			"item": [
+				{
+					"name": "Pricing API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/pricing?q=NL,CN",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"pricing"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "NL,CN"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Track API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/track?q=109347263,123456891",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"track"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "109347263,123456891"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Shipments API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/shipments?q=109347263,123456891",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"shipments"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "109347263,123456891"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "API Aggregation Service",
+			"item": [
+				{
+					"name": "No parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aggregation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aggregation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valid parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aggregation?pricing=NL,CN&track=109347263,123456891&shipments=109347263,123456891",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aggregation"
+							],
+							"query": [
+								{
+									"key": "pricing",
+									"value": "NL,CN"
+								},
+								{
+									"key": "track",
+									"value": "109347263,123456891"
+								},
+								{
+									"key": "shipments",
+									"value": "109347263,123456891"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Only track parameters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aggregation?track=109347263,123456891",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aggregation"
+							],
+							"query": [
+								{
+									"key": "track",
+									"value": "109347263,123456891"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valid parameters (9 countries)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aggregation?pricing=CZ,PT,IT,FR,LU,ES,HU,HR,PL&track=109347263&shipments=109347263",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aggregation"
+							],
+							"query": [
+								{
+									"key": "pricing",
+									"value": "CZ,PT,IT,FR,LU,ES,HU,HR,PL"
+								},
+								{
+									"key": "track",
+									"value": "109347263"
+								},
+								{
+									"key": "shipments",
+									"value": "109347263"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "protocol",
+			"value": "http"
+		},
+		{
+			"key": "hostname",
+			"value": "localhost:8080"
+		}
+	]
+}

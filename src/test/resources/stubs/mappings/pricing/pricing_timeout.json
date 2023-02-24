@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/pricing",
+    "queryParameters": {
+      "q": {
+        "equalTo": "DE"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "pricing/de_timeout.json",
+    "fixedDelayMilliseconds": 6000
+  }
+}

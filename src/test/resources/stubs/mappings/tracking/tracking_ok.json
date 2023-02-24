@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/track",
+    "queryParameters": {
+      "q": {
+        "equalTo": "109347263"
+      },
+      "q": {
+        "equalTo": "123456891"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "tracking/109347263-123456891_ok.json"
+  }
+}

@@ -1,0 +1,10 @@
+# OPS
+# Health
+GET http://localhost:8080/actuator/health
+
+###
+
+# Info
+GET http://localhost:8080/actuator/info
+
+###

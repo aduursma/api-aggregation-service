@@ -1,0 +1,18 @@
+[[service]]
+== API Aggregation Service
+This part of the document describes how to interact with the _API Aggregation Service_.
+
+[[aggregated-response]]
+=== Retrieve aggregated response
+
+The following `GET` request will retrieve the results from the _Shipments, Track and Pricing_ API's and return the aggregated result.
+
+operation::aggregation[snippets='httpie-request,request-parameters,http-response,response-fields']
+
+==== Service unavailable (or a timeout occurs)
+
+In case one of the backend services is unavailable, or a timeout occurs, the data from the other backend services is still retrieved, aggregated and returned.
+
+As shown in the example below, the result of the offending backend service is set to `null`.
+
+operation::aggregation-when-service-unavailable[snippets='http-response']

@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/pricing",
+    "queryParameters": {
+      "q": {
+        "equalTo": "ES"
+      },
+      "q": {
+        "equalTo": "HU"
+      },
+      "q": {
+        "equalTo": "HR"
+      },
+      "q": {
+        "equalTo": "PL"
+      },
+      "q": {
+        "equalTo": "NL"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "pricing/es-hu-hr-pl-nl_ok.json"
+  }
+}

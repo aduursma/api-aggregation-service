@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/pricing",
+    "queryParameters": {
+      "q": {
+        "equalTo": "BE"
+      }
+    }
+  },
+  "response": {
+    "status": 503
+  }
+}

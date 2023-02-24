@@ -1,0 +1,183 @@
+[[boot]]
+== Spring Boot
+
+https://spring.io/projects/spring-boot[Spring Boot] is my framework of choice since 2014.
+
+=== Actuator
+
+Every Spring Boot application should have https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html[production-ready features] enabled by default.
+
+Even when not used in any other way, it's a great feature to have to be able to gain insights in a running application's health and additional information.
+
+For example, being able to retrieve the application's version alone is helpful when detecting and registering any issues which may occur.
+
+I have also included both Maven build and Git related information, although the Git related information is not generated, and therefore not shown, since this assessment is not under any versioning control.
+
+The `git-commit-id-plugin` has been fully configured in the Maven POM file and will become active when the Maven module is added to a Git repository.
+
+=== Validation
+
+The de-facto standard for performing validation is https://hibernate.org/validator[Hibernate Validator], which is the default implementation.
+
+Validating user input is just common sense to me.
+
+I use method-level validation extensively to ensure validation is being performed in all application tiers.
+
+[[cloud]]
+== Spring Cloud
+
+Using https://spring.io/projects/spring-cloud[Spring Cloud] makes sense even when the application is not actually running in a cloud environment.
+
+=== Sleuth
+
+For example, distributed tracing is a topic no application should do without (even if only for the benefits of log correlation).
+
+I have chosen https://spring.io/projects/spring-cloud-sleuth[Sleuth], because of the excellent out-of-the-box integration with Spring Boot and other Spring Cloud projects (such as the ones below).
+
+Normally, I would send all log statements to an instance of https://www.elastic.co/elastic-stack[Elastic Stack] and the traces to https://zipkin.io/[Zipkin], but that's beyond the scope of this assessment.
+
+=== Feign
+
+Creating a REST client has never been easier.
+
+https://spring.io/projects/spring-cloud-openfeign[Feign] has excellent out-of-the-box circuit breaker integration. Just put an implementation on the application's classpath and tell Feign to use it.
+
+=== Hystrix
+
+Even though https://github.com/Netflix/Hystrix[Hystrix] is no longer in active development, and is currently in maintenance mode, I still chose to use it due to my familiarity with this implementation.
+
+[[restdocs]]
+== Spring RESTDocs
+
+https://spring.io/projects/spring-restdocs[Spring RESTDocs] is yet another awesome Spring module to use. It helps you to produce documentation that is accurate, concise, and well-structured and frees you from the limitations of the documentation produced by tools like https://swagger.io/[Swagger].
+
+[[lombok]]
+== Lombok
+
+Project https://projectlombok.org[Lombok] greatly reduces the number of lines of boilerplate code. Using it is just common sense to me.
+
+[[wiremock]]
+== Wiremock
+
+I consider http://wiremock.org[Wiremock] to be the de-facto standard stub implementation out there.
+
+The `spring-cloud-starter-contract-stub-runner` is an extremely convenient way in which you can add Wiremock, and all of it's powerful features, to your integration tests.
+
+[[mockmvc]]
+== MockMvc
+
+I use Spring's MockMvc for unit testing Controller's.
+
+[[restassured]]
+== REST Assured
+
+I use https://rest-assured.io[REST Assured] predominantly for integration and documentation test cases.
+
+Although MockMvc is equally suited for the task, and even has a much shorter feedback loop, I still prefer REST Assured due to fact I just want to have tested all the application layers integrally to ensure the application as a whole behaves in the expected manner.
+
+[[pit]]
+== PITest
+
+In terms of software quality, code coverage alone does not tell you the whole story.
+
+For example, it's easy to write (unit)tests with the single goal of reaching impressive code coverage percentages, but which do not actually test anything.
+
+Mutation testing, however, adds a new dimension to assessing the effectiveness of the (unit)test cases being run.
+
+I have configured https://pitest.org[PITest] to run for this purpose.
+
+[[serenity]]
+== Serenity
+
+Normally I would use http://www.thucydides.info/[Serenity BDD] in combination with https://cucumber.io[Cucumber] to setup integration testing. I considered this to be out of scope for the purpose of the assessment.
+
+Behavior-Driven Development is the way for me to encourage various stakeholders to deliver their feature files to the team and make sure they run as part of the build process.
+
+[[guava]]
+== Google Guava
+
+I chose to use Google Guava's `LinkedBlockingDeque` to throttle the calls to API endpoints as per requirement _AS-2_.
+
+Furthermore, I chose to use Google Guava's `Queues` utility class for draining a queue based on a given capacity and timeout.
+
+I stuck with the requirements from the assessment, which are met, but normally I would suggest caching the calls to the backend services. Using various caches would result in far better response times.
+
+[[maven]]
+== Maven
+
+I have been using Maven as a build automation tool since it's inception back in 2004.
+
+Normally, I use a hierarchy of Maven parent POM files tailored for different purposes, but for simplicity's sake I decided to put all the Maven configuration for this assessment in just one Maven POM file.
+
+Also, as described in the *README.md* file, I extensively use Maven profiles where each profile has it's own purpose.
+
+=== Asciidoc
+
+I use the `asciidoctor-maven-plugin` to generate this document which is a combination of both static text and snippets generated from the documentation test cases.
+
+=== JaCoCo
+
+I use the `jacoco-maven-plugin` to generate the following reports:
+
+- Unit test coverage
+- Integration test coverage
+- Merged test coverage
+
+=== Fabric8
+
+I use Fabric8's `docker-maven-plugin` to not only build the application's Docker image, but also to start/stop the application (including the backend services).
+
+[[postman]]
+== Postman
+
+I have included a Postman collection file at the following location: *src/test/postman*
+
+I consider Postman to be the de-facto standard to interact with REST API's. The Postman collection file can be imported in Postman and is ready for use.
+
+[[intellij-http-client]]
+== Intellij HTTP client
+
+Intellij Ultimate's https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html[HTTP client] is another convenient way to interact with REST API's.
+
+I have included `.http` files for various parts of the application (OPS, backend services and the API aggregation service) at the following location: *src/test*
+
+[[overall]]
+== Overall implementation
+
+[[tiers]]
+=== Software Architecture
+
+The application has been set up as a so-called _3-tier Architecture_.
+
+This is one of the most commonly used architectures. It's quite simple and distributes responsibilities to the following 3 layers.
+
+image::3-tier-architecture.png[]
+
+[[async]]
+=== Asynchronous processing of backend service calls
+
+I have set up the application to use asynchronous processing of calls to the backend services.
+
+This way, calls to the three backend services are dispatched concurrently, which means that the aggregated result will be returned to the client with a minimum of 5 seconds instead of a minimum of 15 seconds if the backend services were to be called synchronously.
+
+[[integration-tests]]
+=== Integration tests
+
+As mentioned above, I use REST Assured when writing integration test cases.
+
+Another important aspect is that the integration test cases are set up using a Wiremock server which is running in the background.
+
+Adding new stub files and maintaining existing ones can now be a collaboration between the developers and non-developers of the team. Non-developers can simply learn how to use Wiremock and start contributing.
+
+If I were to write my integration test cases using MockMvc, adding and maintaining mock data would remain a developer's task.
+
+[[documentation-tests]]
+=== Documentation tests
+
+As mentioned above, I use REST Assured when writing documentation test cases.
+
+Another important aspect is that the documentation test cases are set up using a Wiremock server which is running in the background.
+
+Adding new stub files and maintaining existing ones can now be a collaboration between the developers and non-developers of the team. Non-developers can simply learn how to use Wiremock and start contributing.
+
+If I were to write my documentation test cases using MockMvc, adding and maintaining mock data would remain a developer's task.

@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/pricing",
+    "queryParameters": {
+      "q": {
+        "equalTo": "CZ"
+      },
+      "q": {
+        "equalTo": "PT"
+      },
+      "q": {
+        "equalTo": "IT"
+      },
+      "q": {
+        "equalTo": "FR"
+      },
+      "q": {
+        "equalTo": "LU"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "pricing/cz-pt-it-fr-lu_ok.json"
+  }
+}

@@ -1,0 +1,15 @@
+# Backend Services
+# Pricing API
+GET http://localhost:8081/pricing?q=NL,CN
+
+###
+
+# Track API
+GET http://localhost:8081/track?q=109347263,123456891
+
+###
+
+# Shipments API
+GET http://localhost:8081/shipments?q=109347263,123456891
+
+###
